@@ -124,7 +124,7 @@ namespace LineEquationForTwoPointsTests
         }
 
         [Fact]
-        public void EquationNotContainsUnnecessaryDecimalSeparators()
+        public void EquationNotContainsUnnecessaryRationalSeparators()
         {
             var x = new Point(-1, 3);
             var y = new Point(3, 11);
@@ -132,11 +132,11 @@ namespace LineEquationForTwoPointsTests
         }
 
         [Fact]
-        public void EquationContainsDecimalSeparatorsIfNeeded()
+        public void EquationContainsRationalSeparatorsIfNeeded()
         {
             var x = new Point(6, 4);
             var y = new Point(2, 3);
-            Assert.Equal($"y = 0{NDS}25x + 2{NDS}5", new LineEquation(x, y).ToString());
+            Assert.Equal($"y = 1/4x + 5/2", new LineEquation(x, y).ToString());
         }
     }
 }

@@ -7,9 +7,9 @@ namespace EquationForTwoPoints
 {
     public class Point : IEquatable<Point>
     {
-        public double X { get; }
-        public double Y { get; }
-        public Point(double x, double y)
+        public Rational X { get; }
+        public Rational Y { get; }
+        public Point(Rational x, Rational y)
         {
             (X, Y) = (x, y);
         }

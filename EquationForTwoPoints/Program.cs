@@ -7,7 +7,7 @@ namespace EquationForTwoPoints
     {
         static void Main(string[] args)
         {
-            var numbers = new double[4];
+            var numbers = new Rational[4];
 
             do
             {
@@ -29,7 +29,7 @@ namespace EquationForTwoPoints
             } while (ReadKey().KeyChar == 'y');
         }
 
-        static void AskUserSomeNumbers(double[] array)
+        static void AskUserSomeNumbers(Rational[] array)
         {
             WriteLine();
             for (int i = 0; i < array.Length;)
@@ -38,7 +38,7 @@ namespace EquationForTwoPoints
                 else Write($"Enter y coordinate of point #{(i / 2) + 1}: ");
 
                 string input = ReadLine();
-                if (double.TryParse(input, out array[i]))
+                if (Rational.TryParse(input, out array[i]))
                 {
                     i++;
                 }

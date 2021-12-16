@@ -9,8 +9,8 @@ namespace EquationForTwoPoints
         private readonly Point P1;
         private readonly Point P2;
 
-        public double? Slope { get; }
-        public double? YIntercept { get; }
+        public Rational Slope { get; }
+        public Rational YIntercept { get; }
 
         public LineEquation(Point p1, Point p2)
         {
@@ -29,12 +29,12 @@ namespace EquationForTwoPoints
         public override string ToString()
         {
             string result = "";
-            if (Slope == null) // vertical line
+            if (Slope is null) // vertical line
             {
-                result = $"x = {P1.X:0.##}";
+                result = $"x = {P1.X}";
             } else if (Slope == 0) // horizonal line
             {
-                result = $"y = {YIntercept:0.##}";
+                result = $"y = {YIntercept}";
             } else
             {
                 result = "y = ";
@@ -42,11 +42,11 @@ namespace EquationForTwoPoints
                     result += Slope == 1 ? "x" : "-x";
                 } else
                 {
-                    result += Slope == 1 ? "x" : $"{Slope:0.##}x";
+                    result += Slope == 1 ? "x" : $"{Slope}x";
                 }
                 if (YIntercept != 0) // omit zero y-intercept
                 {
-                    result += YIntercept < 0 ? $" - {Math.Abs(YIntercept.Value):0.##}" : $" + {YIntercept:0.##}";
+                    result += YIntercept < 0 ? $" - {-1*YIntercept}" : $" + {YIntercept}";
                 }
             }
 
