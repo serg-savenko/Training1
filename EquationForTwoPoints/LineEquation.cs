@@ -4,15 +4,15 @@ using System.Text;
 
 namespace EquationForTwoPoints
 {
-    public class LineEquation
+    public class LineEquation<T>
     {
-        private readonly Point P1;
-        private readonly Point P2;
+        private readonly Point<T> P1;
+        private readonly Point<T> P2;
 
-        public Rational Slope { get; }
-        public Rational YIntercept { get; }
+        public dynamic Slope { get; }
+        public dynamic YIntercept { get; }
 
-        public LineEquation(Point p1, Point p2)
+        public LineEquation(Point<T> p1, Point<T> p2)
         {
             if (p1.Equals(p2))
             {
@@ -21,8 +21,8 @@ namespace EquationForTwoPoints
 
             P1 = p1;
             P2 = p2;
-            if (p1.X - p2.X != 0) {
-                Slope = (p1.Y - p2.Y) / (p1.X - p2.X);
+            if (((dynamic)p1.X - p2.X) != 0) {
+                Slope = ((dynamic)p1.Y - p2.Y) / ((dynamic)p1.X - p2.X);
                 YIntercept = p1.Y - (Slope * p1.X);
             }
         }

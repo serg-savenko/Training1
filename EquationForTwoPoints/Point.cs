@@ -5,11 +5,11 @@ using System.Text;
 
 namespace EquationForTwoPoints
 {
-    public class Point : IEquatable<Point>
+    public class Point<T> : IEquatable<Point<T>>
     {
-        public Rational X { get; }
-        public Rational Y { get; }
-        public Point(Rational x, Rational y)
+        public T X { get; }
+        public T Y { get; }
+        public Point(T x, T y)
         {
             (X, Y) = (x, y);
         }
@@ -19,9 +19,9 @@ namespace EquationForTwoPoints
             return $"Point({X}, {Y})";
         }
 
-        public override bool Equals(object obj) => this.Equals(obj as Point);
+        public override bool Equals(object obj) => this.Equals(obj as Point<T>);
 
-        public bool Equals(Point other)
+        public bool Equals(Point<T> other)
         {
             if (other is null)
             {
@@ -43,7 +43,7 @@ namespace EquationForTwoPoints
             // Return true if the fields match.
             // Note that the base class is not invoked because it is
             // System.Object, which defines Equals as reference equality.
-            return (X == other.X) && (Y == other.Y);
+            return X.Equals(other.X) && Y.Equals(other.Y);
         }
 
         public override int GetHashCode() => (X, Y).GetHashCode();
