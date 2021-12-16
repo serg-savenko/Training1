@@ -7,47 +7,15 @@ namespace EquationForTwoPoints
     {
         static void Main(string[] args)
         {
-            var numbers = new Rational[4];
+            var p1 = new Point<double>(new DoubleCoordinate(0), new DoubleCoordinate(0));
+            var p2 = new Point<double>(new DoubleCoordinate(1), new DoubleCoordinate(2));
+            WriteLine(new LineEquation<double>(p1, p2).ToString());
 
-            do
-            {
-                AskUserSomeNumbers(numbers);
-
-                var p1 = new Point(numbers[0], numbers[1]);
-                var p2 = new Point(numbers[2], numbers[3]);
-                try
-                {
-                    var equation = new LineEquation(p1, p2);
-                    WriteLine($"Equation: {equation}");
-                }
-                catch (Exception ex)
-                {
-                    WriteLine("Something went wrong: " + ex.ToString());
-                }
-
-                Write("Press y to try once more. ");
-            } while (ReadKey().KeyChar == 'y');
-        }
-
-        static void AskUserSomeNumbers(Rational[] array)
-        {
-            WriteLine();
-            for (int i = 0; i < array.Length;)
-            {
-                if (i % 2 == 0) Write($"Enter x coordinate of point #{(i / 2) + 1}: ");
-                else Write($"Enter y coordinate of point #{(i / 2) + 1}: ");
-
-                string input = ReadLine();
-                if (Rational.TryParse(input, out array[i]))
-                {
-                    i++;
-                }
-                else
-                {
-                    WriteLine("Wrong number format. Please try again.");
-                }
-            }
-
+            var p3 = new Point<Rational>(new RationalCoordinate(new Rational(0, 1)),
+                new RationalCoordinate(new Rational(3, 2)));
+            var p4 = new Point<Rational>(new RationalCoordinate(new Rational(5, 14)),
+                new RationalCoordinate(new Rational(2, 13)));
+            WriteLine(new LineEquation<Rational>(p3, p4).ToString());
         }
     }
 }

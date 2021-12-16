@@ -4,15 +4,15 @@ using System.Text;
 
 namespace EquationForTwoPoints
 {
-    public class LineEquation
+    public class LineEquation<T>
     {
-        private readonly Point P1;
-        private readonly Point P2;
+        private readonly Point<T> P1;
+        private readonly Point<T> P2;
 
-        public Rational Slope { get; }
-        public Rational YIntercept { get; }
+        public ICoordinate<T> Slope { get; }
+        public ICoordinate<T> YIntercept { get; }
 
-        public LineEquation(Point p1, Point p2)
+        public LineEquation(Point<T> p1, Point<T> p2)
         {
             if (p1.Equals(p2))
             {
@@ -21,9 +21,9 @@ namespace EquationForTwoPoints
 
             P1 = p1;
             P2 = p2;
-            if (p1.X - p2.X != 0) {
-                Slope = (p1.Y - p2.Y) / (p1.X - p2.X);
-                YIntercept = p1.Y - (Slope * p1.X);
+            if (!p1.X.Sub(p2.X).IsZero) {
+                Slope = p1.Y.Sub(p2.Y).Div(p1.X.Sub(p2.X));
+                YIntercept = p1.Y.Sub(Slope.Mul(p1.X));
             }
         }
         public override string ToString()
@@ -32,21 +32,21 @@ namespace EquationForTwoPoints
             if (Slope is null) // vertical line
             {
                 result = $"x = {P1.X}";
-            } else if (Slope == 0) // horizonal line
+            } else if (Slope.IsZero) // horizonal line
             {
                 result = $"y = {YIntercept}";
             } else
             {
                 result = "y = ";
-                if (Slope == 1 || Slope == -1) { // omit slope
-                    result += Slope == 1 ? "x" : "-x";
+                if (Slope.IsAbsOne) { // omit slope
+                    result += Slope.IsNegative ? "-x" : "x";
                 } else
                 {
-                    result += Slope == 1 ? "x" : $"{Slope}x";
+                    result += Slope.IsAbsOne ? "x" : $"{Slope}x";
                 }
-                if (YIntercept != 0) // omit zero y-intercept
+                if (!YIntercept.IsZero) // omit zero y-intercept
                 {
-                    result += YIntercept < 0 ? $" - {-1*YIntercept}" : $" + {YIntercept}";
+                    result += YIntercept.IsNegative ? $" - {YIntercept.GetAbs()}" : $" + {YIntercept}";
                 }
             }
 
