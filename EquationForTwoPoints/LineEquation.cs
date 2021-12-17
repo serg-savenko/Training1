@@ -42,7 +42,7 @@ namespace EquationForTwoPoints
                     result += Slope == 1 ? "x" : "-x";
                 } else
                 {
-                    result += Slope == 1 ? "x" : $"{Slope}x";
+                    result += $"{Slope}x";
                 }
                 if (YIntercept != 0) // omit zero y-intercept
                 {
