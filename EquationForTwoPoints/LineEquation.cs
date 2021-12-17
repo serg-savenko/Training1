@@ -6,9 +6,6 @@ namespace EquationForTwoPoints
 {
     public class LineEquation
     {
-        private readonly Point P1;
-        private readonly Point P2;
-
         public Rational Slope { get; }
         private Rational XIntercept { get; }
         public Rational YIntercept { get; }
@@ -20,8 +17,6 @@ namespace EquationForTwoPoints
                 throw new ArgumentException("Unable to determine equation for equal points");
             }
 
-            P1 = p1;
-            P2 = p2;
             if (p1.X - p2.X != 0) {
                 Slope = (p1.Y - p2.Y) / (p1.X - p2.X);
                 YIntercept = p1.Y - (Slope * p1.X);
