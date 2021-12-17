@@ -17,8 +17,6 @@ namespace EquationForTwoPoints
 
         public bool IsAbsOne => Value == 1 || Value == -1;
 
-        public ICoordinate<RationalCoordinate> GetAbs() => Value < 0 ? new RationalCoordinate(Value * -1) : this;
-
         public ICoordinate<RationalCoordinate> Negate() => new RationalCoordinate(Value * -1);
 
         public RationalCoordinate(Rational v) => Value = v;
