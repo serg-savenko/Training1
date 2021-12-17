@@ -10,6 +10,7 @@ namespace EquationForTwoPoints
         private readonly Point P2;
 
         public Rational Slope { get; }
+        private Rational XIntercept { get; }
         public Rational YIntercept { get; }
 
         public LineEquation(Point p1, Point p2)
@@ -25,13 +26,17 @@ namespace EquationForTwoPoints
                 Slope = (p1.Y - p2.Y) / (p1.X - p2.X);
                 YIntercept = p1.Y - (Slope * p1.X);
             }
+            if (p1.Y - p2.Y != 0)
+            {
+                XIntercept = Slope is null ? p1.X : (-1*YIntercept)/Slope;
+            }
         }
         public override string ToString()
         {
             string result = "";
-            if (Slope is null) // vertical line
+            if (Slope is null) // vertical line - fall back to standard form
             {
-                result = $"x = {P1.X}";
+                result = $"x = {XIntercept}";
             } else if (Slope == 0) // horizonal line
             {
                 result = $"y = {YIntercept}";
