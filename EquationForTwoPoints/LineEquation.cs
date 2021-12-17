@@ -42,7 +42,7 @@ namespace EquationForTwoPoints
                     result += Slope.IsNegative ? "-x" : "x";
                 } else
                 {
-                    result += Slope.IsAbsOne ? "x" : $"{Slope}x";
+                    result += $"{Slope}x";
                 }
                 if (!YIntercept.IsZero) // omit zero y-intercept
                 {
