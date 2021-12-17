@@ -6,10 +6,8 @@ namespace EquationForTwoPoints
 {
     public class LineEquation<T> where T : ICoordinate<T>
     {
-        private readonly Point<T> P1;
-        private readonly Point<T> P2;
-
         public ICoordinate<T> Slope { get; }
+        private ICoordinate<T> XIntercept { get; }
         public ICoordinate<T> YIntercept { get; }
 
         public LineEquation(Point<T> p1, Point<T> p2)
@@ -19,19 +17,21 @@ namespace EquationForTwoPoints
                 throw new ArgumentException("Unable to determine equation for equal points");
             }
 
-            P1 = p1;
-            P2 = p2;
             if (!p1.X.Sub(p2.X).IsZero) {
                 Slope = p1.Y.Sub(p2.Y).Div(p1.X.Sub(p2.X));
                 YIntercept = p1.Y.Sub(Slope.Mul(p1.X));
+            }
+            if (!p1.Y.Sub(p2.Y).IsZero)
+            {
+                XIntercept = Slope is null ? p1.X : YIntercept.Negate().Div(Slope);
             }
         }
         public override string ToString()
         {
             string result = "";
-            if (Slope is null) // vertical line
+            if (Slope is null) // vertical line - fall back to standard form
             {
-                result = $"x = {P1.X}";
+                result = $"x = {XIntercept}";
             } else if (Slope.IsZero) // horizonal line
             {
                 result = $"y = {YIntercept}";
