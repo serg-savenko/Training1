@@ -5,9 +5,11 @@ using System.Text;
 
 namespace EquationForTwoPoints
 {
-    public class DoubleCoordinate : ICoordinate<double>
+    public class DoubleCoordinate : ICoordinate<DoubleCoordinate>
     {
-        public double Value { get; }
+        private double Value { get; }
+
+        public DoubleCoordinate Coordinate => this;
 
         public bool IsZero => Value == 0;
 
@@ -15,28 +17,28 @@ namespace EquationForTwoPoints
 
         public bool IsAbsOne => Value == 1 || Value == -1;
 
-        public ICoordinate<double> GetAbs() => Value < 0 ? new DoubleCoordinate(Value * -1) : this;
+        public ICoordinate<DoubleCoordinate> GetAbs() => Value < 0 ? new DoubleCoordinate(Value * -1) : this;
 
         public DoubleCoordinate(double v) => Value = v;
 
-        public ICoordinate<double> Add(ICoordinate<double> other)
+        public ICoordinate<DoubleCoordinate> Add(ICoordinate<DoubleCoordinate> other)
         {
-            return new DoubleCoordinate(Value + other.Value);
+            return new DoubleCoordinate(Value + other.Coordinate.Value);
         }
 
-        public ICoordinate<double> Div(ICoordinate<double> other)
+        public ICoordinate<DoubleCoordinate> Div(ICoordinate<DoubleCoordinate> other)
         {
-            return new DoubleCoordinate(Value / other.Value);
+            return new DoubleCoordinate(Value / other.Coordinate.Value);
         }
 
-        public ICoordinate<double> Mul(ICoordinate<double> other)
+        public ICoordinate<DoubleCoordinate> Mul(ICoordinate<DoubleCoordinate> other)
         {
-            return new DoubleCoordinate(Value * other.Value);
+            return new DoubleCoordinate(Value * other.Coordinate.Value);
         }
 
-        public ICoordinate<double> Sub(ICoordinate<double> other)
+        public ICoordinate<DoubleCoordinate> Sub(ICoordinate<DoubleCoordinate> other)
         {
-            return new DoubleCoordinate(Value - other.Value);
+            return new DoubleCoordinate(Value - other.Coordinate.Value);
         }
 
         public override string ToString()

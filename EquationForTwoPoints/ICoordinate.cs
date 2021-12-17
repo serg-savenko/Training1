@@ -5,9 +5,9 @@ using System.Text;
 namespace EquationForTwoPoints
 {
 
-    public interface ICoordinate<T>
+    public interface ICoordinate<T> where T : ICoordinate<T>
     {
-        T Value { get; }
+        T Coordinate { get; }
         ICoordinate<T> Add(ICoordinate<T> other);
         ICoordinate<T> Sub(ICoordinate<T> other);
         ICoordinate<T> Mul(ICoordinate<T> other);

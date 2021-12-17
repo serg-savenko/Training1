@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EquationForTwoPoints
 {
-    public class Point<T> : IEquatable<Point<T>>
+    public class Point<T> : IEquatable<Point<T>> where T : ICoordinate<T>
     {
         public ICoordinate<T> X { get; }
         public ICoordinate<T> Y { get; }

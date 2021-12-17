@@ -5,9 +5,11 @@ using System.Text;
 
 namespace EquationForTwoPoints
 {
-    public class RationalCoordinate : ICoordinate<Rational>
+    public class RationalCoordinate : ICoordinate<RationalCoordinate>
     {
-        public Rational Value { get; }
+        private Rational Value { get; }
+
+        public RationalCoordinate Coordinate => this;
 
         public bool IsZero => Value == 0;
 
@@ -15,28 +17,28 @@ namespace EquationForTwoPoints
 
         public bool IsAbsOne => Value == 1 || Value == -1;
 
-        public ICoordinate<Rational> GetAbs() => Value < 0 ? new RationalCoordinate(Value * -1) : this;
+        public ICoordinate<RationalCoordinate> GetAbs() => Value < 0 ? new RationalCoordinate(Value * -1) : this;
 
         public RationalCoordinate(Rational v) => Value = v;
 
-        public ICoordinate<Rational> Add(ICoordinate<Rational> other)
+        public ICoordinate<RationalCoordinate> Add(ICoordinate<RationalCoordinate> other)
         {
-            return new RationalCoordinate(Value + other.Value);
+            return new RationalCoordinate(Value + other.Coordinate.Value);
         }
 
-        public ICoordinate<Rational> Div(ICoordinate<Rational> other)
+        public ICoordinate<RationalCoordinate> Div(ICoordinate<RationalCoordinate> other)
         {
-            return new RationalCoordinate(Value / other.Value);
+            return new RationalCoordinate(Value / other.Coordinate.Value);
         }
 
-        public ICoordinate<Rational> Mul(ICoordinate<Rational> other)
+        public ICoordinate<RationalCoordinate> Mul(ICoordinate<RationalCoordinate> other)
         {
-            return new RationalCoordinate(Value * other.Value);
+            return new RationalCoordinate(Value * other.Coordinate.Value);
         }
 
-        public ICoordinate<Rational> Sub(ICoordinate<Rational> other)
+        public ICoordinate<RationalCoordinate> Sub(ICoordinate<RationalCoordinate> other)
         {
-            return new RationalCoordinate(Value - other.Value);
+            return new RationalCoordinate(Value - other.Coordinate.Value);
         }
 
         public override string ToString()
@@ -47,7 +49,7 @@ namespace EquationForTwoPoints
         public override bool Equals(object obj)
         {
             return obj is RationalCoordinate coordinate &&
-                   EqualityComparer<Rational>.Default.Equals(Value, coordinate.Value);
+                   Value.Equals(coordinate.Value);
         }
 
         public override int GetHashCode()

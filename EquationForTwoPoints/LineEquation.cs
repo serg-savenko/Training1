@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EquationForTwoPoints
 {
-    public class LineEquation<T>
+    public class LineEquation<T> where T : ICoordinate<T>
     {
         private readonly Point<T> P1;
         private readonly Point<T> P2;
