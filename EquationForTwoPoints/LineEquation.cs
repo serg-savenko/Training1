@@ -46,7 +46,7 @@ namespace EquationForTwoPoints
                 }
                 if (!YIntercept.IsZero) // omit zero y-intercept
                 {
-                    result += YIntercept.IsNegative ? $" - {YIntercept.GetAbs()}" : $" + {YIntercept}";
+                    result += YIntercept.IsNegative ? $" - {YIntercept.Negate()}" : $" + {YIntercept}";
                 }
             }
 

@@ -19,6 +19,8 @@ namespace EquationForTwoPoints
 
         public ICoordinate<RationalCoordinate> GetAbs() => Value < 0 ? new RationalCoordinate(Value * -1) : this;
 
+        public ICoordinate<RationalCoordinate> Negate() => new RationalCoordinate(Value * -1);
+
         public RationalCoordinate(Rational v) => Value = v;
 
         public ICoordinate<RationalCoordinate> Add(ICoordinate<RationalCoordinate> other)

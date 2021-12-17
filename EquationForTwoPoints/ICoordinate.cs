@@ -13,6 +13,7 @@ namespace EquationForTwoPoints
         ICoordinate<T> Mul(ICoordinate<T> other);
         ICoordinate<T> Div(ICoordinate<T> other);
         ICoordinate<T> GetAbs();
+        ICoordinate<T> Negate();
         bool IsZero { get; }
         bool IsNegative { get; }
         bool IsAbsOne { get; }

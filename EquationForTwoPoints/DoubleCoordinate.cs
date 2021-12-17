@@ -19,6 +19,8 @@ namespace EquationForTwoPoints
 
         public ICoordinate<DoubleCoordinate> GetAbs() => Value < 0 ? new DoubleCoordinate(Value * -1) : this;
 
+        public ICoordinate<DoubleCoordinate> Negate() => new DoubleCoordinate(Value * -1);
+
         public DoubleCoordinate(double v) => Value = v;
 
         public ICoordinate<DoubleCoordinate> Add(ICoordinate<DoubleCoordinate> other)
